@@ -1,4 +1,5 @@
 import telebot
+from random import randint
 from config import TOKEN
 
 
@@ -12,8 +13,11 @@ def get_started(message):
 
 @bot.message_handler(content_types=['text'])
 def get_message(message):
-    if message.chat == 'Привет':
-        bot.send_message(message.chat.id, f'Хули {message.chat.irst_name} говоришь')
+    if message.text == 'Привет':
+        bot.send_message(message.chat.id, f'Привет, {message.chat.first_name[::-1]}, я ')
+    elif message.text == 'Давай поиграем':
+        bot.send_message(message.chat.id, f'Ок, {message.chat.first_name}, давай сыграем.'
+                                          f'В какую игру ты хочешь сыграть?')
     else:
         bot.send_message(message.chat.id, f'{message.text[::-1]}')
 
